@@ -1,6 +1,7 @@
 ﻿module HtmlParser
 
 open FParsec
+open ParsedTypes
 
 let test p str ``default`` =
     match run p str with
@@ -11,17 +12,14 @@ let test p str ``default`` =
 
 let str s = pstring s
 let ws = spaces
-
 let betweenStrings s1 s2 p = between (str s1) (str s2) p
-
 let betweenSpaces parser = (ws >>. parser .>> ws)
-let slotIdentifier c = isLetter c || c = '-'
-let slot : Parser<string, unit> =
-    //many1Satisfy2L isLetter slotIdentifier "Slot Identifier"
+
+let slot : Parser<HtmlType, unit> =
     identifier (IdentifierOptions())
     |> betweenSpaces
     |> betweenStrings "{{" "}}"
-    |>> fun x -> $"""["{x}"],"""
+    |>> fun x -> Slot { Name = x }
 
 
 

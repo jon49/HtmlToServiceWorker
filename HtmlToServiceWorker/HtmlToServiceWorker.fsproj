@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Test.fs" />
+    <Compile Include="HtmlParser\ParsedTypes.fs" />
     <Compile Include="HtmlParser\HtmlParser.fs" />
     <Content Include="Examples\meal-plans\index.template.html" />
     <None Include="Examples\settings\index.template.html.js" />
