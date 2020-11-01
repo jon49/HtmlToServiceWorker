@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Test.fs" />
+    <Compile Include="HtmlParser\HtmlParser.fs" />
+    <Content Include="Examples\meal-plans\index.template.html" />
+    <None Include="Examples\settings\index.template.html.js" />
+    <Content Include="Examples\settings\index.template.html" />
+    <None Include="Examples\_default.template.html.js" />
+    <Content Include="Examples\_default.template.html" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandDotNet" Version="4.1.3" />
+    <PackageReference Include="FParsec" Version="1.1.1" />
+  </ItemGroup>
+
+</Project>

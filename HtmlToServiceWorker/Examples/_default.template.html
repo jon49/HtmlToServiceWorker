@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <meta name=swjs>
+   <link rel="stylesheet" type="text/css" href="/app/index.css">
+   <script src="/app/utils/database.js"></script>
+   <script async src="/app/utils/snack-bar.js"></script>
+   <script async src="/app/index.js" type=module></script>
+   {{head}}
+</head>
+<body class="{{body-class}}">
+   <header>
+      {{header}}
+      <nav><a href="/app/">Home</a>&nbsp;|&nbsp;{{nav}}</nav>
+   </header>
+   <main id="_main">{{main}}</main>
+   {{after-main}}
+   <template id="error-message-template">
+      <snack-bar class=show><p slot="message"></p></snack-bar>
+   </template>
+   <div id="error-message"></div>
+</body>
+</html>
+

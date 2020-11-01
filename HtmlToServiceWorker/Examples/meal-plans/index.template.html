@@ -1,0 +1,82 @@
+﻿{> ../_default.template.html}
+{=head
+    <title>Plan Meals</title>
+    <script async src="/app/utils/utils.js" type="module"></script>
+    <script async src="/app/utils/database.js" type="module"></script>
+    <style>
+        .meal-edit {
+            min-width: 22em;
+        }
+        .meal-edit h2, .meal-edit p {
+            height: 1.25em;
+            overflow: hidden;
+        }
+        main { width: 100%; }
+        @media (max-width: 481px) {
+            .meal-edit h2, .meal-edit p {
+                height: auto;
+                overflow: none;
+            }
+            .meal-edit { min-width: auto; }
+        }
+    </style>
+}
+
+{=header <h1>Meal Planner</h1> }
+
+{=main
+    <form method=get action="/app/meal-plans/">
+        <label for=start-date>Start Date:&nbsp;</label>
+        <input id=start-date name=startDate type=date required />
+    </form>
+    <section id=_meal-selections class=cards>{{selectedMeals}}</section>
+}
+
+{=after-main
+    <script src="/app/meal-plans/edit/index.js" async type="module"></script>
+    <template id=add-new-meal><div><a href="/app/meals/add">Add New Meal</a></div></template>
+}
+
+{!recipeTemplate
+    <div class="meal-edit" id=${date}>
+        <p>${recipeDate}</p>
+        <h2 title=${title}>${name}</h2>
+        <p>
+            <small>
+                <span title=recipeLocation>${recipeLocation}</span>
+                <a href=${url} title=${urlTitle}>${urlTitle}</a>
+            </small>
+        </p>
+        <p>${description}</p>
+        <div>
+            <form class=inline method=post action="$${cancelMealUrl}">
+                <input name=date type=hidden value="$${date}" />
+                <button>Cancel</button>&nbsp;
+            </form>
+            <form class=inline method=get action="$${searchMealUrl}">>
+                <input name=date type=hidden value="$${date}" />
+                <button>Search</button>&nbsp;
+            </form>
+            <form class=inline method="post" action="$${previousMeal}">>
+                <input name=date type=hidden value="$${date}" />
+                <button>&laquo; Back</button>&nbsp;
+            </form>
+            <form class=inline method="post" action="$${nextMeal}">>
+                <input name=date type=hidden value="$${date}" />
+                <button>Next &raquo;</button>
+            </form>
+        </div>
+    </div>
+}
+
+{!cancelledRecipeTemplate
+    <div id=$${date}>
+        <p>$${date}</p>
+        <h2>No Recipe Chosen</h2>
+        <form method=post action="$${addRecipe}">
+            <input name=date type=hidden value="$${date}" />
+            <button>Add Recipe</button>
+        </form>
+    </div>
+}
+

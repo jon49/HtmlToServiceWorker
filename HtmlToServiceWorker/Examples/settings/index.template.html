@@ -1,0 +1,21 @@
+﻿{> ../layouts/_default.template.html}
+
+{=head
+    <title>Settings</title>
+    <script async src="/app/utils/database.js" type="module"></script>
+}
+
+{=header <h1>Settings</h1> }
+
+{=main
+    <form id=settings>
+        <label for=theme>Theme:</label>
+        <br>
+        <select id=theme name=theme>
+            {getOptions}
+        </select>
+    </form>
+}
+
+{=after-main <script src="/app/settings/index.js" async type=module></script> }
+
